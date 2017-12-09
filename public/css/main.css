@@ -1,3 +1,5 @@
+@import './loader.css';
+
 * {
   box-sizing: border-box;
   margin: 0;

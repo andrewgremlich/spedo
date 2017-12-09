@@ -19,8 +19,6 @@ function success(pos) {
   lib.query('#speedContainer').innerHTML = ''
   lib.query('#speedContainer').innerHTML = temp
 
-  console.log(coords, pos.timestamp)
-
   // firebase.database().ref('locationdata/').push({
   //   timestamp: pos.timestamp,
   //   altitude: coords.altitude,
