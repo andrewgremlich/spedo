@@ -1,6 +1,6 @@
 {
   "name": "spedo",
-  "version": "0.0.1",
+  "version": "1.0.0~beta",
   "description": "Speedometer progressive web application with Firebase.",
   "main": "index.js",
   "scripts": {
