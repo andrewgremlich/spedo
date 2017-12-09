@@ -1,0 +1,15 @@
+{
+  "name": "spedo",
+  "version": "0.0.1",
+  "description": "Speedometer progressive web application with Firebase.",
+  "main": "index.js",
+  "scripts": {
+    "sync": "browser-sync start --files 'public' --server 'public'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Gremlich",
+  "license": "MIT",
+  "dependencies": {
+    "browser-sync": "^2.18.13"
+  }
+}
