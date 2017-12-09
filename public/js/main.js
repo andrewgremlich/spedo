@@ -74,6 +74,8 @@ function success(pos) {
       uid
     } = user
 
+  let distanceTraveled
+
   if (user) {
     appDatabase.ref(`users/${uid}`).set({
       displayName, email, photoURL
@@ -93,11 +95,15 @@ function success(pos) {
     coords.lastPoint.long = coords.longitude
 
     //make a segment that displays distance distanceTraveled
-    console.log(getDistanceInMeters(coords.firstPoint.lat, coords.firstPoint.long, coords.lastPoint.lat, coords.lastPoint.long))
+    distanceTraveled = getDistanceInMeters(coords.firstPoint.lat
+                        , coords.firstPoint.long
+                        , coords.lastPoint.lat
+                        , coords.lastPoint.long)
   }
 
   if (uploadData && uid) {
     appDatabase.ref(`location/${uid}`).push({
+      distanceTraveled: distanceTraveled,
       timestamp: pos.timestamp,
       altitude: coords.altitude,
       heading: coords.heading,
