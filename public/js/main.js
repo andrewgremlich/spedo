@@ -96,7 +96,7 @@ function success(pos) {
     console.log(getDistanceInMeters(coords.firstPoint.lat, coords.firstPoint.long, coords.lastPoint.lat, coords.lastPoint.long))
   }
 
-  if (uploadData) {
+  if (uploadData && uid) {
     appDatabase.ref(`location/${uid}`).push({
       timestamp: pos.timestamp,
       altitude: coords.altitude,
