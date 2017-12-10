@@ -45,7 +45,9 @@ lib.query('#cancel').onclick = e => {
   } else if (cancelIcon.includes('check-circle.svg')) {
     target.src = './icons/x-circle.svg'
     doGeolocation = true
-    id = navigator.geolocation.watchPosition(success, err => console.warn('ERROR(' + err.code + '): ' + err.message), OPTIONS)
+    id = navigator.geolocation.watchPosition(success, err => console.warn('ERROR(' + err.code + '): ' + err.message), {
+      enableHighAccuracy: true
+    })
   }
 }
 

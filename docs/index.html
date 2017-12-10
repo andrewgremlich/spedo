@@ -5,16 +5,136 @@
   <meta charset="utf-8">
   <title>Returning from work report</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-
+  <!-- Chartjs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+  <!-- Main css -->
+  <link rel="stylesheet" href="/css/main.css">
 
 </head>
 
 <body>
 
-  <h1>Beginning Report!</h1>
+  <main>
+    <h1>Spedo Reports</h1>
+
+    <h2>The Idea</h2>
+
+    <p>
+      General Motors (GM) is pushing to have apps on the infotainment dashboard.  Just recently,
+      the announced that drivers will be able to order <a href="http://www.nydailynews.com/autos/news/general-motors-marketplace-infotainment-system-technology-video-article-1.3683789">food from the infotainment center</a>.  These
+      apps on the infotainment dashboard are built with web technologies, and they
+      have additional APIs that fetch data from the sensors of the car.  Access to that many APIs
+      is fantastic, and I thought what data could I pull and put to good use.
+    </p>
+
+    <p>
+      I could not get access to those APIs just yet however, because of some weird
+      release cycle that was happening with GM cars.  So I let that idea settle for a moment.
+      In time, that idea kept on creeping back into my mind, like Gollum tracking down the Fellowship
+      in Lord of the Rings. I wanted to do something about it.  I saw that some apps like Waze
+      updated to show the speed.  I wondered how Waze could do that even without access to car sensors.
+    </p>
+
+    <p>
+      I knew that one could access Geolocation API on their phone.  So I thought up some
+      bright innovative idea to calculate the speed based off of the distance between two geocoordiante
+      points and elapsed time. That is how one normally calculate's speed right?  Distance... over... time...
+      yeah right?  That proved to be  more difficult than I thought as it wasn't just simple math.  I
+      needed to get more accurate and faster calculations and that method was not cutting the pie as
+      it should have been doing.  As I was developing this way of calculating speed with two geocoordinate
+      points, I noticed a little detail in the JavaScript Geolocation API.  Geolocation API provided longitude
+      and latitude points, but it as well provided altitude, speed, and heading points.
+      My innovative idea wasn't so innovative any more, like shooting a rabbit with a bow and arrow.
+    </p>
+
+    <p>
+      Nevertheless, I grabbed the opportunity and used the extra data that I did not know
+      existed beforehand.  I made an <a href="https://spedo-34021.firebaseapp.com/">mobile
+      interface with Firebase</a>.  I wanted to shoot this idea out quickly, and Firebase
+      was just the right tool that could help.  I spun up some Firebase instances, got some
+      cutting edge es6 JavaScript implemented, and downloaded some hardcore icons from
+      <a href="https://feathericons.com/">FeatherIcons</a>.  Like the good ol' Beatles Song,
+      "All together now!"
+    </p>
+
+    <p>
+      As I was developing this app, more ideas started to pop into my head.  Austin is a
+      busy place when it comes to traffic in between the time periods
+      of 7-9 AM and 4-7 PM.  I live about 8 miles from where I work, and I was wondering
+      if I could gather imperical data showing which route would be better to take
+      returning home.  My home-made custom mobile application could help me do this!  I added
+      some more administrative detail with the Firebase instance
+      I made, like database read/write rules and JSON data structure for collecting data.
+    </p>
+
+    <p>
+      I finished iteration after iteration and I finally got to a working model.  There were
+      several features I made with the first working beta model.  Speed is shown on screen in
+      meters per second.  Speed tracking can be turned off and on.  Data is only logged if the
+      user is logged in with their Google account.  The data upload can be turned off and on.
+      Behind the scene with the Firebase instance, only the logged in user can upload data
+      under their own UID in the database.  I was set and ready to go for a trial run, like an
+      elementary school kid going to his first day of school!
+    </p>
+
+    <h2>Trial Run</h2>
+
+    <p>
+      I finished the first working version on a beautiful Texan Saturday afternoon.  I had
+      recently started a small hobby of going trail biking.  My favorite location to go to
+      (the only location I have gone to so far) is Walnut Creek Park, smack dab in the middle
+      of northern Austin.  I retrieved my bike and gear and I placed them in my car.  I
+      went to the driver seat, and put the key in the ignition and turned it to turn on my
+      car.  I had previously bought LTE Hotspot service for my car from OnStar, so I connected
+      to my WiFi hotspot from my phone.  I opened up Google Chrome, and typed in the URL
+      address for my little project.  I kept the phone screen on (because the data does not
+      upload if the screen is turned off) and I drove to Walnut Creek Park.  When I arrived at the
+      park, I stopped the data tracking and I went off for my bike ride.
+    </p>
+
+    <p>
+      I finished my bike ride, and I returned home without any data tracking.  I double checked
+      my Firebase console and saw that I had over 500 data points uploaded!  I was happy that it
+      had something!  Now I just need to get it displayed somehow.  Having a lot of data and not a way
+      of displaying it is like trying to perceive if grass blades are all bent the same way in a field.
+      So I decided to use <a href="http://www.chartjs.org/">Chartjs</a> to plot out all the data points (chickens) that I had
+      gathered.  I had to do some fancy ETL (Extract Transform Load) process in order to use the
+      data with Chartjs.  I made the function to gather all the x and y points that I needed.
+      The x points are unix timestamps, and the y points pertain to their respective data value.
+    </p>
+
+    <p>
+      Without further long winded introductions to a simple trial run graph...  (drum-roll sounds)
+      tadaa!
+    </p>
+
+    <div id="chartman">
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <p>
+        What do I learn from this graph? Well for one, Walnut Creek Park is about 50 meters
+        lower than where I live.  That was interesting to perceive.  Also my speed is just
+        a set of parabolic arches (don't know the significance of that).  In it's entirety,
+        do I know exactly what this data means as well?  I'm not entirely sure of that.  Does
+        data presentation look cool, like when the Golden Arches first
+        stood in Southern California? I sure do think it does!
+    </p>
+
+    <h2>Gatherer of Data</h2>
+
+    <p>Now I can gather my data!</p>
+
+    <p>To be continued...</p>
+
+  </main>
+
+  <footer>
+    <p>#noobnerd</p>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
 
 </body>
 
