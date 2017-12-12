@@ -1,5 +1,10 @@
 import datasetGen from './datasetGen.js'
 
+document.getElementById('remoteRepo').onclick = e => {
+  var win = window.open('https://github.com/andrewgremlich/spedo', '_blank');
+  win.focus();
+}
+
 const options = {
   showLines: false,
   title: {

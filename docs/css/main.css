@@ -39,6 +39,10 @@ a:visited {
   width: 100%;
 }
 
+#remoteRepo {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 700px) {
   main, footer {
     margin: 40px 80px;
