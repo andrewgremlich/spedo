@@ -21,7 +21,6 @@ function generator(name) {
 
   }
 
-  console.log(exporter)
   return exporter
 }
 

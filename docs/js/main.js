@@ -2,6 +2,10 @@ import datasetGen from './datasetGen.js'
 
 const options = {
   showLines: false,
+  title: {
+    display: true,
+    text: 'Trial Run of Spedo App'
+  },
   scales: {
     xAxes: [{
       type: 'linear',
@@ -16,9 +20,6 @@ const options = {
     line: {
       tension: 0, // disables bezier curves
     }
-  },
-  animation: {
-    duration: 0, // general animation time
   }
 }
 
