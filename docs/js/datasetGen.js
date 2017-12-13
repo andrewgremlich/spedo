@@ -1,21 +1,24 @@
-import trialRunData from './backup/spedo-trial-run.js'
-
-function generator(name) {
+function generator(name, data) {
 
   const secondsThreshold = 5000
 
   let exporter = [],
-    tmp
+    tmp,
+    start
 
-  for (let value of Object.values(trialRunData)) {
+  for (let value of Object.values(data)) {
 
-    if (tmp === undefined) tmp = value.timestamp
+    if (typeof tmp === 'undefined') tmp = value.timestamp
+    if (typeof start === 'undefined') start = value.timestamp
 
     if (value.timestamp - tmp > secondsThreshold) {
-      exporter.push({
-        x: (value.timestamp || 0),
-        y: +(value[name] || 0).toFixed(2)
-      })
+
+      if (value[name] !== 0) {
+        exporter.push({
+          x: ((value.timestamp || 0) - start) / 1000,
+          y: +(value[name] || 0).toFixed(2)
+        })
+      }
       tmp = value.timestamp
     }
 
