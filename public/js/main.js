@@ -30,7 +30,7 @@
 
     let user = firebase.auth().currentUser
 
-    fetch(`https://us-central1-spedo-34021.cloudfunctions.net/api/fetchUserData/${user.uid}`)
+    fetch(`/fetchUserData/${user.uid}`)
       .then(response => {
         if (response.ok) {
           return response.json()
