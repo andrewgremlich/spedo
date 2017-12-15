@@ -33,6 +33,9 @@ function main(graphTitle, ctx, dataset) {
       line: {
         tension: 0, // disables bezier curves
       }
+    },
+    animation: {
+        duration: 0
     }
   }
 

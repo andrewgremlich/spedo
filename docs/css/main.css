@@ -4,13 +4,18 @@
   padding: 0;
 }
 
+:root {
+  --main-red-color: #bd1515;
+  --main-white-color: #ececec
+}
+
 h1, h2, h3, h4, h5, h6, p {
   font-family: Helvetica, sans-serif;
   font-weight: 100;
 }
 
 body {
-  background-color: : #ececec;
+  background-color: var(--main-white-color);
 }
 
 main, footer {
@@ -19,6 +24,7 @@ main, footer {
 
 h1, h2 {
   margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 p {
@@ -28,7 +34,7 @@ p {
 }
 
 a {
-  color: #bd1515;
+  color: var(--main-red-color);
 }
 
 a:visited {
@@ -39,7 +45,34 @@ a:visited {
   width: 100%;
 }
 
+nav > h3 {
+  margin-bottom: 10px;
+}
+
+.tbcontents {
+  text-decoration: none;
+}
+
+.tbcontents.sub {
+  margin-left: 25px;
+}
+
+#sticky {
+  background-color: var(--main-white-color);
+  position: sticky;
+  top: -1px;
+}
+
+#sticky a {
+  text-decoration: none;
+}
+
 #remoteRepo {
+  cursor: pointer;
+}
+
+#refresh {
+  color: var(--main-red-color);
   cursor: pointer;
 }
 

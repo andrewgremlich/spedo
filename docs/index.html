@@ -13,10 +13,28 @@
 
 </head>
 
-<body>
+<body id="top">
 
   <main>
+
+    <div id="sticky">
+      <p><a href="#top">To Top...</a></p>
+    </div>
+
     <h1>Spedo <img id="remoteRepo" src="./icons/github.svg" alt="Spedo Repository"></h1>
+
+    <nav>
+      <h2>Table of Contents</h2>
+
+      <h3><a class="tbcontents" href="#theIdeaSection">The Idea</a></h3>
+
+      <h3><a class="tbcontents" href="#trialRunSection">Trial Run</a></h3>
+
+      <h3><a class="tbcontents" href="#gathererSection">Gatherer of Data</a></h3>
+
+      <h4><a class="tbcontents sub" href="#parmerRiataSection">Parmer Through Riata</a></h4>
+       <p id="theIdeaSection"></p>
+    </nav>
 
     <h2>The Idea</h2>
 
@@ -68,7 +86,7 @@
       I made, like database read/write rules and JSON data structure for collecting data.
     </p>
 
-    <p>
+    <p id="trialRunSection">
       I finished iteration after iteration and I finally got to a working model.  There were
       several features I made with the first working beta model.  Speed is shown on screen in
       meters per second.  Speed tracking can be turned off and on.  Data is only logged if the
@@ -110,12 +128,12 @@
     </p>
 
     <div class="chartman">
-      <canvas id="trialRun"></canvas>
+      <canvas id="trialRunChart"></canvas>
     </div>
 
     <p>Note, data points only shown of every 5 seconds and any speed of 0 is truncated.</p>
 
-    <p>
+    <p id="gathererSection">
         What do I learn from this graph? Well for one, Walnut Creek Park is about 50 meters
         lower than where I live.  That was interesting to perceive.  Also my speed is just
         a set of parabolic arches (don't know the significance of that).  In it's entirety,
@@ -126,7 +144,7 @@
 
     <h2>Gatherer of Data</h2>
 
-    <p>Now I can gather my data!</p>
+    <p id="parmerRiataSection">Now I can gather my data!</p>
 
     <h3>Parmer Through Riata</h3>
 
@@ -134,7 +152,21 @@
       <canvas id="ParmerRiata"></canvas>
     </div>
 
-    <p>Note, data points only shown of every 5 seconds and any speed of 0 is truncated.</p>
+    <p>
+      Note, data points only shown of every 5 seconds and any speed of 0 is truncated.
+      The colors are also randomly generated so if you have a bad color set then I suggest
+      a <label id="refresh">refresh</label>.
+    </p>
+
+    <p>
+      So this graph was done in the time period of 12 December to 15 December 2017.  The data may be a little
+      skewed because it is probable that most of the real traffic just was not there because of the
+      holidays.  However, from personal observation the traffic remained just about the same.  The data I gathered
+      is me traveling between the hours of 5 - 6 pm.  The third time I started recording data, I did start a little
+      bit latter (but still in between 5-6 pm) and I did see a slight decrease in traffic in some areas.
+    </p>
+
+    <p>I also observe that my time termination got shorter.</p>
 
   </main>
 
