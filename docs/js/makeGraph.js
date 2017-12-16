@@ -14,7 +14,7 @@ function getRandomColor() {
 
 function main(graphTitle, ctx, dataset) {
   const options = {
-    showLines: false,
+    showLines: true,
     title: {
       display: true,
       text: graphTitle
@@ -27,6 +27,14 @@ function main(graphTitle, ctx, dataset) {
           display: true,
           labelString: 'Elapsed Time (s)'
         }
+      }],
+      yAxes: [{
+        type: 'linear',
+        position: 'bottom',
+        scaleLabel: {
+          display: true,
+          labelString: 'Speed (m/s)'
+        }
       }]
     },
     elements: {
@@ -34,8 +42,11 @@ function main(graphTitle, ctx, dataset) {
         tension: 0, // disables bezier curves
       }
     },
+    hover: {
+      animationDuration: 0, // duration of animations when hovering an item
+    },
     animation: {
-        duration: 0
+      duration: 0
     }
   }
 
@@ -48,20 +59,29 @@ function main(graphTitle, ctx, dataset) {
     let iter = 1
 
     for (let set of dataset) {
+
+      let color = getRandomColor()
+
       data.datasets.push({
-        label: 'Speed (m/s)',
+        label: `Run ${iter} (m/s)`,
         data: datasetGen('speed', set),
         borderWidth: 1,
-        backgroundColor: getRandomColor()
+        backgroundColor: color,
+        borderColor: color,
+        fill: false
       })
       iter++
     }
   } else {
+
+    let color = getRandomColor()
     data.datasets.push({
       label: 'Speed (m/s)',
       data: datasetGen('speed', dataset),
       borderWidth: 1,
-      backgroundColor: getRandomColor()
+      backgroundColor: color,
+      borderColor: color,
+      fill: false
     })
   }
 
