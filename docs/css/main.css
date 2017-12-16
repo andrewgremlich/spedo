@@ -69,6 +69,27 @@ nav > h3 {
 
 #remoteRepo {
   cursor: pointer;
+  transition: all 1s ease;
+}
+
+#remoteRepo:hover {
+  transform: rotate(360deg);
+}
+
+#barChartIcon {
+  transition: all 1s ease;
+}
+
+#barChartIcon:hover {
+  transform: scale(4, 4);
+}
+
+#trendy {
+  transition: all 1s ease;
+}
+
+#trendy:hover {
+  transform: translate(40px, -40px);
 }
 
 #refresh {
