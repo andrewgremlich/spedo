@@ -1,50 +1,63 @@
-var staticCacheName = 'spedoPWA-v1',
-    filesToCache = [
-        '/index.html',
-        '/js/*.js',
-        '/css/*.css',
-        'manifest.json'
-    ]
+var staticCacheName = 'spedoPWA-v7',
+  filesToCache = [
+    'index.html',
+    'js/*',
+    'css/*',
+    'manifest.json'
+  ]
 
-self.addEventListener('install', function (event) {
-    console.log('Installing Service Worker')
-    event.waitUntil(
-        caches.open(staticCacheName).then(function (cache) {
-            return cache.addAll(filesToCache)
-        })
-    )
+function precache() {
+  return caches.open(staticCacheName).then(function(cache) {
+    return cache.addAll(filesToCache)
+  }).catch(e => console.log(e))
+}
+
+self.addEventListener('install', function(event) {
+  console.log('Installing Service Worker')
+  event.waitUntil(precache())
 })
 
-self.addEventListener('activate', function (event) {
-    event.waitUntil(
-        caches.keys().then(function (cacheNames) {
-            return Promise.all(
-                cacheNames.filter(function (cacheName) {
-                    return cacheName.startsWith('spedoPWA-') && cacheName != staticCacheName
-                }).map(function (cacheName) {
-                    return caches.delete(cacheName)
-                })
-            )
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          return cacheName.startsWith('spedoPWA-') && cacheName != staticCacheName
+        }).map(function(cacheName) {
+          return caches.delete(cacheName)
         })
-    )
+      )
+    })
+  )
 })
 
-self.addEventListener('fetch', function (event) {
-    // TODO: respond to requests for the root page with
-    // the page skeleton from the cache
+function fromCache(request) {
+  return caches.open(staticCacheName).then(function (cache) {
+    return cache.match(request).then(function (matching) {
+      console.log(request)
+      return matching || Promise.reject(`no-match ${request}`);
+    });
+  });
+}
 
-    var requestURL = new URL(event.request.url)
+function fromNetwork(request, timeout) {
+  return new Promise(function (fulfill, reject) {
+    var timeoutId = setTimeout(reject, timeout)
 
-    if (requestURL.origin === location.origin) {
-        if (requestURL.pathname === '/') {
-            event.respondWith(caches.match('/index.html'))
-            return
-        }
-    }
+    fetch(request).then(function (response) {
+      clearTimeout(timeoutId)
+      console.log(request)
+      console.log(`from network ${request}`)
+      fulfill(response)
+    }, reject)
+  })
+}
 
-    event.respondWith(
-        caches.match(event.request).then(function (response) {
-            return response || fetch(event.request)
-        })
-    )
+self.addEventListener('fetch', function(evt) {
+  console.log('The service worker is serving the asset.')
+  evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
+  console.log(request)
+    console.log(`from cache ${request}`)
+    return fromCache(evt.request)
+  }))
 })
