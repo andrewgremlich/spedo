@@ -2,6 +2,9 @@
   import lib from './lib.js'
   import auth from './auth.js'
   import getDistanceInMeters from './getDistanceInMeters.js'
+  import swregister from './swregister.js'
+
+  swregister()
 
   let app = firebase.initializeApp(config),
     appAuth = app.auth(),

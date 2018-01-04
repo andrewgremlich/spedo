@@ -4,30 +4,30 @@ var staticCacheName = 'spedoPWA-v1',
         '/js/*.js',
         '/css/*.css',
         'manifest.json'
-    ];
+    ]
 
-self.addEventListener('install', function (e) {
-    console.log('Installing Service Worker');
-    e.waitUntil(
+self.addEventListener('install', function (event) {
+    console.log('Installing Service Worker')
+    event.waitUntil(
         caches.open(staticCacheName).then(function (cache) {
-            return cache.addAll(filesToCache);
+            return cache.addAll(filesToCache)
         })
-    );
-});
+    )
+})
 
 self.addEventListener('activate', function (event) {
     event.waitUntil(
         caches.keys().then(function (cacheNames) {
             return Promise.all(
                 cacheNames.filter(function (cacheName) {
-                    return cacheName.startsWith('spedoPWA-') && cacheName != staticCacheName;
+                    return cacheName.startsWith('spedoPWA-') && cacheName != staticCacheName
                 }).map(function (cacheName) {
-                    return caches.delete(cacheName);
+                    return caches.delete(cacheName)
                 })
-            );
+            )
         })
-    );
-});
+    )
+})
 
 self.addEventListener('fetch', function (event) {
     // TODO: respond to requests for the root page with
@@ -44,7 +44,7 @@ self.addEventListener('fetch', function (event) {
 
     event.respondWith(
         caches.match(event.request).then(function (response) {
-            return response || fetch(event.request);
+            return response || fetch(event.request)
         })
-    );
-});
+    )
+})
