@@ -1,4 +1,4 @@
-var staticCacheName = 'spedoPWA-v3',
+var staticCacheName = 'spedoPWA-v4',
   filesToCache = [
     './index.html',
     './js/auth.js',
@@ -53,7 +53,7 @@ function update(request) {
 }
 
 function fromNetwork(request, timeout) {
-  return new Promise( (fulfill, reject) => {
+  return new Promise((fulfill, reject) => {
     var timeoutId = setTimeout(reject, timeout)
     fetch(request).then(response => {
       clearTimeout(timeoutId)
@@ -65,11 +65,12 @@ function fromNetwork(request, timeout) {
 function fromCache(request) {
   return caches.open(staticCacheName).then(cache => {
     return cache.match(request).then(matching => {
-      return matching || fromNetwork(request, 400)
+      return matching || fromNetwork(request, 1000)
     }).catch(e => console.log(e))
   }).catch(e => console.log(e))
 }
 
+//For responding cache first
 self.addEventListener('fetch', evt => {
   evt.respondWith(fromCache(evt.request))
   evt.waitUntil(update(evt.request))
@@ -77,7 +78,7 @@ self.addEventListener('fetch', evt => {
 
 // For responding with network first
 // self.addEventListener('fetch', evt => {
-//   evt.respondWith(fromNetwork(evt.request, 400).catch(() => {
+//   evt.respondWith(fromNetwork(evt.request, 1000).catch(() => {
 //     return fromCache(evt.request)
 //   }))
 // })
