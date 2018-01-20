@@ -44,14 +44,31 @@ function findMedianSpeed(dataset) {
 }
 
 function howManyTimesStopped() {
-
+  console.log('nothing done yet.')
 }
 
 function eliminateOutliers() {
-
+  console.log('nothing done yet.')
 }
 
-export default {
-  findMeanSpeed,
-  findMedianSpeed
+function outputStats(header, dispenser, dataset) {
+  let statDiv = document.createElement('div'),
+    h1header = document.createElement('h2'),
+    h3mean = document.createElement('h3'),
+    h3median = document.createElement('h3'),
+    mean = findMeanSpeed(dataset),
+    median = findMedianSpeed(dataset)
+
+  h1header.appendChild(document.createTextNode(header))
+
+  h3mean.appendChild(document.createTextNode(`Mean: ${mean} m/s`))
+  h3median.appendChild(document.createTextNode(`Median: ${median} m/s`))
+
+  statDiv.appendChild(h1header)
+  statDiv.appendChild(h3mean)
+  statDiv.appendChild(h3median)
+
+  dispenser.appendChild(statDiv)
 }
+
+export default outputStats

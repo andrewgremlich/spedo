@@ -64,6 +64,14 @@ nav > h3 {
   margin-bottom: 40px;
 }
 
+.stat {
+  display: flex;
+}
+
+.stat div {
+  margin: 30px;
+}
+
 #sticky {
   background-color: var(--main-white-color);
   position: sticky;
