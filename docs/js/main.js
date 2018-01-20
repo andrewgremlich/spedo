@@ -6,8 +6,8 @@ import parmerThroughRiata2 from './backup/parmerThroughRiata2.js'
 import parmerThroughRiata3 from './backup/parmerThroughRiata3.js'
 
 document.getElementById('remoteRepo').onclick = e => {
-  var win = window.open('https://github.com/andrewgremlich/spedo', '_blank');
-  win.focus();
+  var win = window.open('https://github.com/andrewgremlich/spedo', '_blank')
+  win.focus()
 }
 
 document.getElementById('refresh').onclick = e => {
