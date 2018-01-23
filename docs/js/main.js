@@ -1,6 +1,6 @@
 import datasetGen from './datasetGen.js'
 import makeGraph from './makeGraph.js'
-import trialRunData from './backup/spedo-trial-run.js'
+import trialRunData1 from './backup/spedo-trial-run.js'
 import parmerThroughRiata1 from './backup/parmerThroughRiata1.js'
 import parmerThroughRiata2 from './backup/parmerThroughRiata2.js'
 import parmerThroughRiata3 from './backup/parmerThroughRiata3.js'
@@ -17,7 +17,8 @@ document.getElementById('refresh').onclick = e => {
 }
 
 let parmerThroughRiata = [parmerThroughRiata1, parmerThroughRiata2, parmerThroughRiata3],
-  parmerThroughRiataLong = [ parmerThroughRiataLong1 ]
+  parmerThroughRiataLong = [ parmerThroughRiataLong1 ],
+  trialRunData = [ trialRunData1 ]
 
 makeGraph('Trial Run of Spedo App', document.getElementById("trialRunChart").getContext("2d"), trialRunData)
 makeGraph('Parmer Through Riata', document.getElementById("ParmerRiata").getContext("2d"), parmerThroughRiata)
@@ -25,3 +26,4 @@ makeGraph('Parmer Through Riata Long', document.getElementById("ParmerRiataLong"
 
 dispenseStats('Parmer through Riata Run', document.getElementById('ParmerRiataStats'), parmerThroughRiata)
 dispenseStats('Parmer through Riata Long Run', document.getElementById('ParmerRiataLongStats'), parmerThroughRiataLong)
+dispenseStats('Trial Run', document.getElementById('trialRunStats'), trialRunData)
