@@ -12,7 +12,7 @@ function findMeanSpeed(dataset) {
     }
   }
 
-  return (speedsSum / datapointAmount).toFixed(2) + ' m/s'
+  return (speedsSum / datapointAmount).toFixed(2)
 }
 
 function findMedianSpeed(dataset) {
@@ -40,7 +40,23 @@ function findMedianSpeed(dataset) {
     median = ((sorted[middle] + sorted[middle + 1]) / 2.0).toFixed(2)
   }
 
-  return median + ' m/s'
+  return median
+}
+
+function milliSecsToMin(duration) {
+
+  let seconds = duration / 1000,
+    min = seconds / 60
+
+  return min.toFixed(2)
+}
+
+function lengthOfTrip(dataset) {
+  const objKeys = Object.keys(dataset),
+    duration = (dataset[objKeys[objKeys.length - 1]].timestamp) - (dataset[objKeys[0]].timestamp),
+    minutes = milliSecsToMin(duration)
+
+  return minutes
 }
 
 function howManyTimesStopped() {
@@ -51,24 +67,42 @@ function eliminateOutliers() {
   console.log('nothing done yet.')
 }
 
-function outputStats(header, dispenser, dataset) {
-  let statDiv = document.createElement('div'),
-    h1header = document.createElement('h2'),
-    h3mean = document.createElement('h3'),
-    h3median = document.createElement('h3'),
-    mean = findMeanSpeed(dataset),
-    median = findMedianSpeed(dataset)
+function outputStats(header, dispenser, datasets) {
 
-  h1header.appendChild(document.createTextNode(header))
+  if (Array.isArray(datasets)) {
 
-  h3mean.appendChild(document.createTextNode(`Mean: ${mean} m/s`))
-  h3median.appendChild(document.createTextNode(`Median: ${median} m/s`))
+    let iter = 0
 
-  statDiv.appendChild(h1header)
-  statDiv.appendChild(h3mean)
-  statDiv.appendChild(h3median)
+    for (let dataset of datasets) {
 
-  dispenser.appendChild(statDiv)
+      iter++
+
+      let statDiv = document.createElement('div'),
+        h1header = document.createElement('h4'),
+        h3mean = document.createElement('h5'),
+        h3median = document.createElement('h5'),
+        h3time = document.createElement('h5'),
+        mean = findMeanSpeed(dataset),
+        median = findMedianSpeed(dataset),
+        timeDuration = lengthOfTrip(dataset)
+
+      h1header.appendChild(document.createTextNode(`${header} ${iter}`))
+
+      h3mean.appendChild(document.createTextNode(`Mean: ${mean} m/s`))
+      h3median.appendChild(document.createTextNode(`Median: ${median} m/s`))
+      h3time.appendChild(document.createTextNode(`Time Duration: ${timeDuration} min`))
+
+      statDiv.appendChild(h1header)
+      statDiv.appendChild(h3mean)
+      statDiv.appendChild(h3median)
+      statDiv.appendChild(h3time)
+
+      dispenser.appendChild(statDiv)
+    }
+
+  } else {
+    console.warn('Not an array!!!')
+  }
 }
 
 export default outputStats
