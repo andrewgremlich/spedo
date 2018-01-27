@@ -16,11 +16,11 @@
 
 <body id="top">
 
-  <main>
+  <div id="sticky">
+    <p><a href="#top">To Top...</a></p>
+  </div>
 
-    <div id="sticky">
-      <p><a href="#top">To Top...</a></p>
-    </div>
+  <main>
 
     <h1>Spedo <img id="remoteRepo" src="./icons/github.svg" alt="Spedo Repository"></h1>
 
@@ -134,6 +134,12 @@
 
     <div class="stat" id="trialRunStats"></div>
 
+    <img class="map" data-map="trialRunMap" alt="Trial Run Map">
+
+    <p>
+      Map note, green means go, and read means stop.
+    </p>
+
     <p>Note, data points only shown of every 5 seconds and any speed of 0 is truncated.</p>
 
     <p id="gathererSection">
@@ -155,11 +161,9 @@
       <canvas id="ParmerRiata"></canvas>
     </div>
 
-    <div id="ParmerRiataMap" class="map"></div>
-
-    <img src="https://maps.googleapis.com/maps/api/staticmap?center=Austin,TX&zoom=11&size=600x300&key=AIzaSyDLu0n8jzsGvlBRc4qSjnjLqqCyC9PJcwU" alt="Parmer Through Riata Map Image">
-
     <div class="stat" id="ParmerRiataStats"></div>
+
+    <img class="map" data-map="ParmerRiataMap" alt="Parmer Through Riata Map Image">
 
     <p>It's not very fun driving home...</p>
 
@@ -189,9 +193,9 @@
       <canvas id="ParmerRiataLong"></canvas>
     </div>
 
-    <div id="ParmerRiataLongMap" class="map"></div>
-
     <div class="stat" id="ParmerRiataLongStats"></div>
+
+    <img class="map" data-map="ParmerRiataLongMap" alt="Parmer Through Riata Long Map Image">
 
     <p>
       Yeah no.  I decided to try this way, turning left on the first Riata Circle going west on Parmer, in order to
@@ -204,9 +208,9 @@
       <canvas id="HowardWellsBranch"></canvas>
     </div>
 
-    <!-- <div id="HowardWellsBranchMap" class="map"></div> -->
-
     <div class="stat" id="HowardWellsBranchStats"></div>
+
+    <img class="map" data-map="HowardWellsBranchMap" alt="Howard cut to wells branch and back to howard map image">
 
     <p>
       This is the way I believe that is the fastest.
@@ -224,10 +228,8 @@
 
   <script type="module" src="./js/main.js"></script>
 
-  <script type="text/javascript" src="./js/cartographer.js"></script>
-
   <!-- google maps api -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLu0n8jzsGvlBRc4qSjnjLqqCyC9PJcwU&callback=initMap" async defer></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLu0n8jzsGvlBRc4qSjnjLqqCyC9PJcwU&callback=initMap" async defer></script> -->
 
 </body>
 
