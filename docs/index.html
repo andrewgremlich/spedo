@@ -33,7 +33,8 @@
 
       <h3><a class="tbcontents" href="#gathererSection">Gatherer of Data</a></h3>
 
-      <h4><a class="tbcontents sub" href="#parmerRiataSection">Parmer Through Riata</a></h4>
+      <h3><a class="tbcontents" href="#gettingItRight">Getting it done Right</a></h3>
+
        <p id="theIdeaSection"></p>
     </nav>
 
@@ -132,6 +133,8 @@
       <canvas id="trialRunChart"></canvas>
     </div>
 
+    <p>Note, data points only shown of every 5 seconds and any speed of 0 is truncated.</p>
+
     <div class="stat" id="trialRunStats"></div>
 
     <img class="map" data-map="trialRunMap" alt="Trial Run Map">
@@ -139,8 +142,6 @@
     <p>
       Map note, green means go, and read means stop.
     </p>
-
-    <p>Note, data points only shown of every 5 seconds and any speed of 0 is truncated.</p>
 
     <p id="gathererSection">
         What do I learn from this graph? Well for one, Walnut Creek Park is about 50 meters
@@ -167,13 +168,13 @@
 
     <p>It's not very fun driving home...</p>
 
-    <p>Note for all graphs, you can click where it says "Run 1 (m/s)" (etc), to make certain datasets disappear.</p>
+    <p>Dataset Notes</p>
 
-    <p>
-      Note, data points only shown of every 5 seconds and any speed of 0 is truncated.
-      The colors are also randomly generated so if you have a bad color set then I suggest
-      a <label id="refresh">refresh</label>.
-    </p>
+    <ul>
+      <li>For all graphs, you can click where it says "Run 1 (m/s)" (etc), to make certain datasets disappear.</li>
+      <li>The colors are also randomly generated so if you have a bad color set then I suggest
+      a <label id="refresh">refresh</label>.</li>
+    </ul>
 
     <p>
       So this graph was done in the time period of 12 December to 15 December 2017.  The data may be a little
@@ -216,9 +217,43 @@
       This is the way I believe that is the fastest.
     </p>
 
-    <p>
+    <p id="gettingItRight">
       The traffic run was fine and normal the first run.  Nothing strange and abnormal there.
     </p>
+
+    <h2>Getting it Right</h2>
+
+    <p>
+      To make sure I get it right, I need to do a few things for this dataset collection.
+      <ul>
+        <li>Between 5pm - 6pm</li>
+        <li>Don't turn off mobile device</li>
+        <li>Truncate 0s in graph display</li>
+        <li>Display datapoints every 5 seconds.</li>
+        <li>Map note, green means go, and read means stop.</li>
+      </ul>
+    </p>
+
+    <h3>Howard Cut to Wells Branch and back on Howard again...</h3>
+
+    <div class="chartman">
+      <canvas id="HowardWellsBranchAgain"></canvas>
+    </div>
+
+    <div class="stat" id="HowardWellsBranchAgainStats"></div>
+
+    <img class="map" data-map="HowardWellsBranchAgainMap" alt="Howard cut to wells branch and back to howard map image">
+    </p>
+
+    <h3>Going through Parmer and taking the Riata Loop</h3>
+
+    <div class="chartman">
+      <canvas id="ParmerRiataLoop"></canvas>
+    </div>
+
+    <div class="stat" id="ParmerRiataLoopStats"></div>
+
+    <img class="map" data-map="ParmerRiataLoopMap" alt="Parmer through Riata loop">
 
   </main>
 
